@@ -10,25 +10,45 @@ namespace Karate_Chop
     {
         static void Main(string[] args)
         {
-            int[] idNumbers = { 122, 167, 204, 219, 345 };
             int x;
-            string entry;
-            int entryId;
+            int[] array = {1,3,5};
+            int request = 4;
 
-            Console.Write("Enter employee ID: ");
-            entry = Console.ReadLine();
-            entryId = Convert.ToInt32(entry);
+            
 
-            x = Array.BinarySearch(idNumbers, entryId);
+            x = Chop1(array, request);
 
-            if (x < 0)
-            {
-                Console.WriteLine("ID {0} not found", entryId);
-            }
-            else
-            {
-                Console.WriteLine("ID {0} found at position {1}", entryId, x);
-            }
+            Console.WriteLine(x.ToString());
+            Console.Read();
+            
+           
         }
+
+        public static int Chop1(int[] A, int key)
+        {
+            int low = 0, high = A.Length - 1, midpoint = 0;
+
+            while (low <= high)
+            {
+                midpoint = low + (high - low) / 2;
+
+                if (key == A[midpoint])
+                {
+                    return midpoint;
+                }
+                else if (key < A[midpoint])
+                {
+                    high = midpoint - 1;
+                }
+                else
+                {
+                    low = midpoint + 1;
+                }
+            }
+
+            return -1;           
+        }
+
+        
     }
 }
